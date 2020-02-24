@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+   "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Programming Lab 1</title>
+  </head>
+  <body>
+    <h1 style="text-align:center;">Programming Lab 1:
+      Simulating a Pushdown Automata</h1>
+
+    <h3>TA: Juan Sebastián Cárdenas-Rodríguez</h3>
+
+    <h3>Introduction</h3>
+    <p>Non-deterministic finite automata and deterministic finite
+      automata can only represent "regular languages", hence it is
+      important to find a model that allow for a bigger representation
+      such as the Pushdown Automaton (PDA) [Hopcroft, Motwani and
+      Ullman 2007]. The goal of this programming lab is to simulate a
+      PDA.</p>
+
+    <h3>Assignment (80%)</h3>
+    <ul>
+      <li>
+        <p>Download the <a href="https://github.com/">GitHub</a>
+        repository <a
+        href="https://github.com/afl-eafit/2020-1-lab1">2019-2-lab1</a>.</p>
+      </li>
+
+      <li>
+        <p>(60%) Using the data type in the above repository define the
+        function:</p>
+        <pre> simPDA :: PushdownAutomata state symbol ssymbol -> [symbol] -> Bool </pre>
+        <p>that takes a PDA  and a list of symbols, which then returns
+	   true if the string of symbols belong to the language of the PDA.</p>
+        <p></p>
+
+        <p>Suggestion: Use the <a href="https://bit.ly/39TK0rE">
+        Stack</a> data type.</p>
+      </li>
+
+      <li>
+        (10%)
+        <ul>
+          <li>Your lab will be tested using the <code>-Wall</code>,
+          <code>-Wmissing-local-signatures</code> and
+          <code>-Wmissing-signatures</code> options.</li>
+
+          <li>Annotate (in English) your source code using <a
+          href="https://bit.ly/2LYUQ82">Haddock</a>. Documentation
+          should explain your solution for the assignment.</li>
+
+          <li>Improve your implementation with <a
+          href="https://github.com/ndmitchell/hlint">HLint</a>.</li>
+        </ul>
+      </li>
+
+      <li> <p>(10%) Solve and deliver on time the proposed warm-up.</p>
+      </li>
+
+      <li>
+        <p>The programming lab may either be solved on your own, or
+        jointly with one other student taking the course.</p>
+      </li>
+
+      <li>
+        <p>You are to use GHCi ≥ 8.6.5. See <a
+        href="https://www.haskell.org/downloads/">installing a proper
+        Haskell distribution</a>.</p>
+      </li>
+    </ul>
+
+    <h3>Examples</h3>
+    <p>Using the <code>PushdownAutomata.hs</code> module in the above
+    GitHub repository, this is what a sample input-output looks
+    like:</p>
+    <pre>
+      GHCi&gt; simPFA example0 []
+      False
+      GHCi&gt; simPFA example0 [0,1,1,0]
+      True
+      GHCi&gt; simPFA example0 [0,1,1,1,0,0,1,1,1,0]
+      True
+      GHCi&gt; simPFA example1 "aaaab"
+      False
+      GHCi&gt; simPFA example1 "aabb"
+      True
+      GHCi&gt; simPFA example2 "aaaaaabbbbbbbbb"
+      True
+    </pre>
+
+    <h3>Clean code (10%)</h3>
+    <p>Before submitting your code, which includes your
+    <tt>README</tt> file (see below), clean it up:</p>
+
+    <ul>
+      <li>Does not have long lines (at most 80 columns).</li>
+
+      <li>Has an uniformly indentation (we recommended two
+      characters).</li>
+
+      <li>Has a consistent layout.</li>
+
+      <li>Has type signatures for everything (included
+      <code>where</code>-clauses and
+      <code>let</code>-definitions).</li>
+
+      <li>Has no junk (unused code, commented code, unnecessary
+      code).</li>
+
+      <li>Has no overly complicated function definitions.</li>
+
+      <li>Does not contain any repetitive code.</li>
+
+      <li>Has no tabs.</li>
+
+      <li>Has no unnecessary spaces at the end of a line, or empty
+      lines at the end of a file. (See: <a
+      href="http://www1.eafit.edu.co/asr/tips-and-tricks.html#
+      fixing-trailing-whitespace-issues"> Fixing trailing whitespace
+      issues with Emacs</a>).</li>
+
+      <li>Has spell-checked comments.</li>
+    </ul>
+
+    <h3>Submission (10%)</h3>
+    <p>Submission is electronic. Send an email to
+    <tt>asr(at)eafit(dot)edu(dot)co</tt> and
+    <tt>jscardenar(at)eafit(dot)edu(dot)co</tt> and attach a compressed
+    file (<tt>.zip</tt> or <tt>.tar.gz</tt>) with your solution.</p>
+
+    <p>Your submission has to include the following:</p>
+    <ul>
+      <li><tt>SimPDA.hs</tt>, a Haskell module file with your
+      solution for the assignment.</li>
+
+      <li>
+        A plain text file <tt>README.txt</tt> (or a Markdown file
+        <tt>README.md</tt>), a file (in English) containing at least
+        the following information:
+        <ul>
+          <li>The name of your program.</li>
+
+          <li>Your name(s).</li>
+
+          <li>A general description of your program.</li>
+
+          <li>Information on how to use your program.</li>
+
+          <li>GHC and/or Haskell platform versions used.</li>
+        </ul>
+      </li>
+
+      <li>Do not include any other files.</li>
+    </ul>
+
+    <h3>Bibliography</h3>
+    <ul>
+      <li>K. J. E. Hopcroft, R. Motwani, and J. D. Ullman
+      (2007). Introduction to Automata Theory, Languages, and
+      Computation. 3rd edition. Pearson Education.
+      </li>
+    </ul>
+
+    <hr />
+
+    <table style="width:100%">
+      <tr>
+        <td><a href=
+        "http://www1.eafit.edu.co/asr/courses/automata-cm0081/">
+        Automata and formal languages - CM0081</a></td> <td
+        style="text-align:right;"><a
+        href="http://validator.w3.org/check?uri=referer"><img
+        src="http://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML
+        1.1" height="31" width="88" /></a></td>
+      </tr>
+    </table>
+  </body>
+</html>
