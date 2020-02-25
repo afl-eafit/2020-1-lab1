@@ -8,7 +8,7 @@
   </head>
   <body>
     <h1 style="text-align:center;">Programming Lab 1:
-      Simulating a Pushdown Automata</h1>
+      Simulating a PushDown Automata</h1>
 
     <h3>TA: Juan Sebastián Cárdenas-Rodríguez</h3>
 
@@ -16,22 +16,28 @@
     <p>Non-deterministic finite automata and deterministic finite
       automata can only represent "regular languages", hence it is
       important to find a model that allow for a bigger representation
-      such as the Pushdown Automaton (PDA) [Hopcroft, Motwani and
+      such as the PushDown Automaton (PDA) [Hopcroft, Motwani and
       Ullman 2007]. The goal of this programming lab is to simulate a
       PDA.</p>
+
+    <p>A PDA can be deterministic and non-deterministic. Furthermore,
+    a PDA can accept by final state or accept by emptying the
+    stack. In this programming lab, the non-deterministic PDA that
+    accepts by final state is going to be considered(check sections
+    6.1.1 - 6.2.1).</p>
 
     <h3>Assignment (80%)</h3>
     <ul>
       <li>
         <p>Download the <a href="https://github.com/">GitHub</a>
         repository <a
-        href="https://github.com/afl-eafit/2020-1-lab1">2019-2-lab1</a>.</p>
+        href="https://github.com/afl-eafit/2020-1-lab1">2020-1-lab1</a>.</p>
       </li>
 
       <li>
         <p>(60%) Using the data type in the above repository define the
         function:</p>
-        <pre> simPDA :: PushdownAutomata state symbol ssymbol -> [symbol] -> Bool </pre>
+        <pre> simPDA :: PushDownAutomata state symbol ssymbol -> [symbol] -> Bool </pre>
         <p>that takes a PDA  and a list of symbols, which then returns
 	   true if the string of symbols belong to the language of the PDA.</p>
         <p></p>
@@ -72,21 +78,25 @@
     </ul>
 
     <h3>Examples</h3>
-    <p>Using the <code>PushdownAutomata.hs</code> module in the above
+    <p>Using the <code>PushDownAutomata.hs</code> module in the above
     GitHub repository, this is what a sample input-output looks
     like:</p>
     <pre>
-      GHCi&gt; simPFA example0 []
+      GHCi&gt; simPDA automata0 []
+      True
+      GHCi&gt; simPDA automata0 [1]
       False
-      GHCi&gt; simPFA example0 [0,1,1,0]
+      GHCi&gt; simPDA automata0 [0,1,1,0]
       True
-      GHCi&gt; simPFA example0 [0,1,1,1,0,0,1,1,1,0]
+      GHCi&gt; simPDA automata0 [0,1,1,1,0,0,1,1,1,0]
       True
-      GHCi&gt; simPFA example1 "aaaab"
+      GHCi&gt; simPDA automata1 "aaaab"
       False
-      GHCi&gt; simPFA example1 "aabb"
+      GHCi&gt; simPDA automata1 "aabb"
       True
-      GHCi&gt; simPFA example2 "aaaaaabbbbbbbbb"
+      GHCi&gt; simPDA automata2 "aabb"
+      False
+      GHCi&gt; simPDA automata2 "aaaaaabbbbbbbbb"
       True
     </pre>
 
