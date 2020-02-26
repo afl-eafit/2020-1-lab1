@@ -13,20 +13,19 @@
     <h3>TA: Juan Sebastián Cárdenas-Rodríguez</h3>
 
     <h3>Introduction</h3>
-    <p>Non-deterministic finite automata and deterministic finite
-      automata can only represent "regular languages", hence it is
-      important to find a model that allow for a bigger representation
-      such as the PushDown Automaton (PDA) [Hopcroft, Motwani and
-      Ullman 2007]. The goal of this programming lab is to simulate a
-      PDA.</p>
+    <p>Finite automata only represent regular languages, hence it is
+    important to know a model that allow to represent non-regular
+    languages. One such model are the PushDown Automaton (PDA)
+    [Hopcroft, Motwani and Ullman 2007]. The goal of this programming
+    lab is to simulate a PDA.</p>
 
-    <p>A PDA can be deterministic and non-deterministic. Furthermore,
-    a PDA can accept by final state or accept by emptying the
-    stack. In this programming lab, the non-deterministic PDA that
-    accepts by final state is going to be considered (check sections
-    6.1.1 - 6.2.1).</p>
+    <p>A PDA can be deterministic or non-deterministic. Furthermore, a
+    PDA can accept by final state or accept by empty stack. In this
+    programming lab, the non-deterministic PDA that accepts by final
+    state is going to be considered [Sections 6.1.1 - 6.2.1, Hopcroft,
+    Motwani and Ullman 2007].</p>
 
-    <h3>Assignment (80%)</h3>
+    <h3>Assignment (70%)</h3>
     <ul>
       <li>
         <p>Download the <a href="https://github.com/">GitHub</a>
@@ -38,8 +37,9 @@
         <p>(60%) Using the data type in the above repository define the
         function:</p>
         <pre> simPDA :: PushDownAutomata state symbol ssymbol -> [symbol] -> Bool </pre>
-        <p>that takes a PDA  and a list of symbols, which then returns
-	   true if the string of symbols belong to the language of the PDA.</p>
+        <p>that takes a PDA and a list of symbols and returns if the
+        string of symbols belong or does not belong to the language of
+        the PDA.</p>
         <p></p>
 
         <p>Suggestion: Use the <a href="https://bit.ly/39TK0rE">
@@ -47,33 +47,9 @@
       </li>
 
       <li>
-        (10%)
-        <ul>
-          <li>Your lab will be tested using the <code>-Wall</code>,
-          <code>-Wmissing-local-signatures</code> and
-          <code>-Wmissing-signatures</code> options.</li>
-
-          <li>Annotate (in English) your source code using <a
-          href="https://bit.ly/2LYUQ82">Haddock</a>. Documentation
-          should explain your solution for the assignment.</li>
-
-          <li>Improve your implementation with <a
-          href="https://github.com/ndmitchell/hlint">HLint</a>.</li>
-        </ul>
-      </li>
-
-      <li> <p>(10%) Solve and deliver on time the proposed warm-up.</p>
-      </li>
-
-      <li>
-        <p>The programming lab may either be solved on your own, or
-        jointly with one other student taking the course.</p>
-      </li>
-
-      <li>
-        <p>You are to use GHCi ≥ 8.6.5. See <a
-        href="https://www.haskell.org/downloads/">installing a proper
-        Haskell distribution</a>.</p>
+        <p>(10%) To document (in English) your source
+        code. Documentation should explain your solution for the
+        assignment.</p>
       </li>
     </ul>
 
@@ -100,7 +76,25 @@
       True
     </pre>
 
-    <h3>Clean code (10%)</h3>
+    <h3>Requirements (10%)</h3>
+
+    <ul>
+      <li>The programming lab may either be solved on your own, or
+      jointly with one other student taking the course.</li>
+
+      <li> You are to use GHCi ≥ 8.6.5. See <a
+      href="https://www.haskell.org/downloads/">installing a proper
+      Haskell distribution</a>.</li>
+
+      <li> (5%) Your lab will be tested using the <code>-Wall</code>,
+      <code>-Wmissing-local-signatures</code> and
+      <code>-Wmissing-signatures</code> options.</li>
+
+      <li>(5%) Improve your implementation with <a
+      href="https://github.com/ndmitchell/hlint">HLint</a>.</li>
+    </ul>
+
+    <h3>Clean code (5%)</h3>
     <p>Before submitting your code, which includes your
     <tt>README</tt> file (see below), clean it up:</p>
 
@@ -134,7 +128,9 @@
       <li>Has spell-checked comments.</li>
     </ul>
 
-    <h3>Submission (10%)</h3>
+    <h3>Programming labs warm-up (10%)</h3>
+
+    <h3>Submission (5%)</h3>
     <p>Submission is via <a href="https://github.com">GitHub</a>:</p>
 
     <ul>
@@ -166,6 +162,9 @@
 
       <li>Do not include any other files in the repository.</li>
     </ul>
+
+    <h3>Bonus points (10%)</h3>
+    <p>To use GHC 8.8.3 released 24 February 2020.</p>
 
     <h3>Bibliography</h3>
     <ul>
