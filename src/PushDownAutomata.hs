@@ -1,4 +1,4 @@
-{- | This module is used to represent PushDown Automata. -}
+{- | This module is used to represent PushDown Automata -}
 module PushDownAutomata where
 
 import Data.Map as Map
@@ -9,7 +9,7 @@ import Data.Set as Set
      a stack symbol with a tuple that has the new state and a list of
      stack symbols. The symbol in the first tuple is represented by a
      list because, it can be either an input symbol or the empty
-     string (see 6.1.2, definition of PDA)-}
+     string (see 6.1.2, definition of PDA) -}
 type TransitionFunction state symbol symbolp
      = Map (state, [symbol], symbolp) (Set (state, [symbolp]))
 
@@ -39,7 +39,7 @@ data PushDownAutomata state symbol symbolp = PDA
      [symbol], symbolp, state, [symbolp])@ is a tuple whose elements
      represent the origin state, the symbol that executes the
      transition, the last symbol of the stack, the final state and the
-     string to replace the stack symbol respectively.-}
+     string to replace the stack symbol respectively -}
 addTransition :: (Ord state, Ord symbol, Ord symbolp) =>
                  (state, [symbol], symbolp, state, [symbolp]) ->
                  TransitionFunction state symbol symbolp ->
@@ -87,7 +87,7 @@ automata0 = PDA {
                    Map.empty
 
 {- | Second automata example. This PDA represents the following language,
-     L(automata1) = {a^nb^n | n >= 1}.-}
+     L(automata1) = {a^nb^n | n >= 1} -}
 automata1 :: PushDownAutomata Int Char Char
 automata1 = PDA {
       states        = Set.fromList [0, 1, 2]
@@ -106,7 +106,7 @@ automata1 = PDA {
                    Map.empty
 
 {- | Third automata example. This PDA represents the following language.
-     L(automata1) = {a^(2n)b^(3n) | n >= 1}.-}
+     L(automata2) = {a^(2n)b^(3n) | n >= 1} -}
 automata2 :: PushDownAutomata Int Char Char
 automata2 = PDA {
       states        = Set.fromList [0, 1, 2, 3, 4]
