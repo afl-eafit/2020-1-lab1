@@ -8,22 +8,22 @@
   </head>
   <body>
     <h1 style="text-align:center;">Programming Lab 1:
-      Simulating a PushDown Automata</h1>
+      Simulating Pushdown Automata</h1>
 
     <h3>TA: Juan Sebastián Cárdenas-Rodríguez</h3>
 
     <h3>Introduction</h3>
     <p>Finite automata only represent regular languages, hence it is
     important to know a model that allow to represent non-regular
-    languages. One such model are the PushDown Automaton (PDA)
+    languages. One such model are the Pushdown Automaton (PDA)
     [Hopcroft, Motwani and Ullman 2007]. The goal of this programming
     lab is to simulate a PDA.</p>
 
-    <p>A PDA can be deterministic or non-deterministic. Furthermore, a
-    PDA can accept by final state or accept by empty stack. In this
-    programming lab, the non-deterministic PDA that accepts by final
-    state is going to be considered [Sections 6.1.1 - 6.2.1, Hopcroft,
-    Motwani and Ullman 2007].</p>
+    <p>PDA can be deterministic or non-deterministic. Furthermore, PDA
+    can accept by final state or accept by empty stack. In this
+    programming lab, the non-deterministic PDA that accept by final
+    state are going to be considered [Sections 6.1.1 - 6.2.1,
+    Hopcroft, Motwani and Ullman 2007].</p>
 
     <h3>Assignment (70%)</h3>
     <ul>
@@ -37,9 +37,9 @@
         <p>(60%) Using the data type in the above repository define the
         function:</p>
         <pre> simPDA :: PushDownAutomata state symbol ssymbol -> [symbol] -> Bool </pre>
-        <p>that takes a PDA and a list of symbols and returns if the
-        string of symbols belong or does not belong to the language of
-        the PDA.</p>
+        <p>that takes a pushdown automaton and a list of symbols and
+        returns if the string of symbols belong or does not belong to
+        the language of the automaton.</p>
         <p></p>
 
         <p>Suggestion: Use the <a href="https://bit.ly/39TK0rE">
