@@ -50,20 +50,20 @@ addTransition (q, s, sp, q', y) = Map.insertWith Set.union (q, s, sp)
 -- | Formats how to display instances of PushdownAutomata.
 instance (Show state, Show symbol, Show symbolp) =>
           Show (PushDownAutomata state symbol symbolp) where
-  show (PDA st sy ssy tf is z0 ac) =
+  show (PDA st sy ssy tf is z00 ac) =
        "States:         "   ++ show st ++
        "\nAlphabet:       " ++ show sy ++
        "\nStack Alphabet  " ++ show ssy ++
        "\nDelta:          " ++ show tf ++
        "\nInitial States: " ++ show is ++
-       "\nStart symbol    " ++ show z0 ++
+       "\nStart symbol    " ++ show z00 ++
        "\nAccept States:  " ++ show ac
 
 {- | First automata example. This PDA represents the following language,
-     L(automata0) = {ww^r | w in [0, 1]*} with w^r being the reversed
+     L(pda0) = {ww^r | w in [0, 1]*} with w^r being the reversed
      word. This is Example 6.2 of the guide book. -}
-automata0 :: PushDownAutomata Int Int Int
-automata0 = PDA {
+pda0 :: PushDownAutomata Int Int Int
+pda0 = PDA {
       states        = Set.fromList [0, 1, 2]
     , alphabet      = Set.fromList [0, 1]
     , stackalphabet = Set.fromList [0, 1, -1]
@@ -87,9 +87,9 @@ automata0 = PDA {
                    Map.empty
 
 {- | Second automata example. This PDA represents the following language,
-     L(automata1) = {a^nb^n | n >= 1} -}
-automata1 :: PushDownAutomata Int Char Char
-automata1 = PDA {
+     L(pda1) = {a^nb^n | n >= 1} -}
+pda1 :: PushDownAutomata Int Char Char
+pda1 = PDA {
       states        = Set.fromList [0, 1, 2]
     , alphabet      = Set.fromList ['a', 'b']
     , stackalphabet = Set.fromList ['a', 'b', 'z']
@@ -106,9 +106,9 @@ automata1 = PDA {
                    Map.empty
 
 {- | Third automata example. This PDA represents the following language.
-     L(automata2) = {a^(2n)b^(3n) | n >= 1} -}
-automata2 :: PushDownAutomata Int Char Char
-automata2 = PDA {
+     L(pda2) = {a^(2n)b^(3n) | n >= 1} -}
+pda2 :: PushDownAutomata Int Char Char
+pda2 = PDA {
       states        = Set.fromList [0, 1, 2, 3, 4]
     , alphabet      = Set.fromList ['a', 'b']
     , stackalphabet = Set.fromList ['a', 'b', 'z']
