@@ -1,12 +1,12 @@
 
 {-| This module is used to represent PushDown Automata -}
+
 module PushDownAutomata where
 
 import Data.Map as Map
 import Data.Set as Set
 
-{-|
-  Represents the transition function (delta function) of a
+{-| Represents the transition function (delta function) of a
   PushDownAutomata.  The map pairs a tuple of a state, a symbol and a
   stack symbol with a tuple that has the new state and a list of stack
   symbols. The symbol in the first tuple is represented by a list
@@ -16,8 +16,7 @@ import Data.Set as Set
 type TransitionFunction state symbol ssymbol
      = Map (state, [symbol], ssymbol) (Set (state, [ssymbol]))
 
-{-|
-  Represents a PushDown Automaton (PDA).  The type can represent a
+{-| Represents a PushDown Automaton (PDA).  The type can represent a
   deterministic and non-deterministic PDA, with states of type
   @state@, input symbols of type @symbol@ and stack symbols of type
   @ssymbol@.
@@ -40,8 +39,7 @@ data PushDownAutomata state symbol ssymbol = PDA
     , acceptState  :: Set state
   }
 
-{-|
-  Adds a transition to the given TransitionFunction.  @(state,
+{-| Adds a transition to the given TransitionFunction.  @(state,
   [symbol], ssymbol, state, [ssymbol])@ is a tuple whose elements
   represent the origin state, the symbol that executes the transition,
   the last symbol of the stack, the final state and the string to
@@ -69,75 +67,80 @@ instance (Show state, Show symbol, Show ssymbol) =>
 ------------------------------------------------------------------------------
 -- PDA examples
 
-{-|
-  First automata example. This PDA represents the following language,
-  L(pda0) = {ww^r | w in [0, 1]*} with w^r being the reversed
+{-| First automaton example. This PDA represents the following language,
+  L(pda1) = {ww^r | w in [0, 1]*} with w^r being the reversed
   word. This is Example 6.2 of the textbook.
 -}
-pda0 :: PushDownAutomata Int Int Int
-pda0 = PDA {
-      states        = Set.fromList [0, 1, 2]
-    , alphabet      = Set.fromList [0, 1]
-    , stackalphabet = Set.fromList [0, 1, -1]
-    , delta         = delta'
-    , initialState  = 0
-    , z0            = -1
-    , acceptState   = Set.fromList [2]
-  } where delta' :: TransitionFunction Int Int Int
-          delta' = addTransition (0, [0], -1, 0, [0, -1]) $
-                   addTransition (0, [1], -1, 0, [1, -1]) $
-                   addTransition (0, [0], 0, 0, [0, 0]) $
-                   addTransition (0, [0], 1, 0, [0, 1]) $
-                   addTransition (0, [1], 0, 0, [1, 0]) $
-                   addTransition (0, [1], 1, 0, [1, 1]) $
-                   addTransition (0, [], -1, 1, [-1]) $
-                   addTransition (0, [], 0, 1, [0]) $
-                   addTransition (0, [], 1, 1, [1]) $
-                   addTransition (1, [0], 0, 1, []) $
-                   addTransition (1, [1], 1, 1, []) $
-                   addTransition (1, [], -1, 2, [-1])
-                   Map.empty
+pda1 :: PushDownAutomata Int Int Int
+pda1 = PDA
+  { states        = Set.fromList [0, 1, 2]
+  , alphabet      = Set.fromList [0, 1]
+  , stackalphabet = Set.fromList [0, 1, -1]
+  , delta         = delta'
+  , initialState  = 0
+  , z0            = -1
+  , acceptState   = Set.fromList [2]
+  }
+  where
+    delta' :: TransitionFunction Int Int Int
+    delta' = addTransition (0, [0], -1, 0, [0, -1]) $
+             addTransition (0, [1], -1, 0, [1, -1]) $
+             addTransition (0, [0], 0, 0, [0, 0]) $
+             addTransition (0, [0], 1, 0, [0, 1]) $
+             addTransition (0, [1], 0, 0, [1, 0]) $
+             addTransition (0, [1], 1, 0, [1, 1]) $
+             addTransition (0, [], -1, 1, [-1]) $
+             addTransition (0, [], 0, 1, [0]) $
+             addTransition (0, [], 1, 1, [1]) $
+             addTransition (1, [0], 0, 1, []) $
+             addTransition (1, [1], 1, 1, []) $
+             addTransition (1, [], -1, 2, [-1])
+             Map.empty
 
-{-|
-  Second automata example. This PDA represents the following language,
-  L(pda1) = {a^nb^n | n >= 1}.
--}
-pda1 :: PushDownAutomata Int Char Char
-pda1 = PDA {
-      states        = Set.fromList [0, 1, 2]
-    , alphabet      = Set.fromList ['a', 'b']
-    , stackalphabet = Set.fromList ['a', 'b', 'z']
-    , delta         = delta'
-    , initialState  = 0
-    , z0            = 'z'
-    , acceptState   = Set.fromList [2]
-  } where delta' :: TransitionFunction Int Char Char
-          delta' = addTransition (0, ['a'], 'z', 0, ['a', 'z']) $
-                   addTransition (0, ['a'], 'a', 0, ['a', 'a']) $
-                   addTransition (0, ['b'], 'a', 1, []) $
-                   addTransition (1, ['b'], 'a', 1, []) $
-                   addTransition (1, [], 'z', 2, ['z'])
-                   Map.empty
-
-{-|
-  Third automata example. This PDA represents the following language.
-  L(pda2) = {a^(2n)b^(3n) | n >= 1}.
+{-| Second automaton example. This PDA represents the following
+  language, L(pda2) = {a^nb^n | n >= 1}.
 -}
 pda2 :: PushDownAutomata Int Char Char
-pda2 = PDA {
-      states        = Set.fromList [0, 1, 2, 3, 4]
-    , alphabet      = Set.fromList ['a', 'b']
-    , stackalphabet = Set.fromList ['a', 'b', 'z']
-    , delta         = delta'
-    , initialState  = 0
-    , z0            = 'z'
-    , acceptState   = Set.fromList [4]
-  } where delta' :: TransitionFunction Int Char Char
-          delta' = addTransition (0, ['a'], 'z', 1, ['z']) $
-                   addTransition (1, ['a'], 'z', 2, ['a', 'a', 'a', 'z']) $
-                   addTransition (1, ['a'], 'a', 2, ['a', 'a', 'a', 'a']) $
-                   addTransition (2, ['a'], 'a', 1, ['a']) $
-                   addTransition (2, ['b'], 'a', 3, []) $
-                   addTransition (3, ['b'], 'a', 3, []) $
-                   addTransition (3, [], 'z', 4, ['z'])
-                   Map.empty
+pda2 = PDA
+  { states        = Set.fromList [0, 1, 2]
+  , alphabet      = Set.fromList ['a', 'b']
+  , stackalphabet = Set.fromList ['a', 'b', 'z']
+  , delta         = delta'
+  , initialState  = 0
+  , z0            = 'z'
+  , acceptState   = Set.fromList [2]
+  }
+  where
+    delta' :: TransitionFunction Int Char Char
+    delta' = addTransition (0, ['a'], 'z', 0, ['a', 'z']) $
+             addTransition (0, ['a'], 'a', 0, ['a', 'a']) $
+             addTransition (0, ['b'], 'a', 1, []) $
+             addTransition (1, ['b'], 'a', 1, []) $
+             addTransition (1, [], 'z', 2, ['z'])
+             Map.empty
+
+{-| Third automaton example. This PDA represents the following language.
+  L(pda3) = {a^(2n)b^(3n) | n >= 1}.
+-}
+pda3 :: PushDownAutomata Int Char Char
+pda3 = PDA
+  {  states        = Set.fromList [0, 1, 2, 3, 4]
+  , alphabet      = Set.fromList ['a', 'b']
+  , stackalphabet = Set.fromList ['a', 'b', 'z']
+  , delta         = delta'
+  , initialState  = 0
+  , z0            = 'z'
+  , acceptState   = Set.fromList [4]
+  }
+  where
+    delta' :: TransitionFunction Int Char Char
+    delta' = addTransition (0, ['a'], 'z', 1, ['z']) $
+             addTransition (1, ['a'], 'z', 2, ['a', 'a', 'a', 'z']) $
+             addTransition (1, ['a'], 'a', 2, ['a', 'a', 'a', 'a']) $
+             addTransition (2, ['a'], 'a', 1, ['a']) $
+             addTransition (2, ['b'], 'a', 3, []) $
+             addTransition (3, ['b'], 'a', 3, []) $
+             addTransition (3, [], 'z', 4, ['z'])
+             Map.empty
+
+

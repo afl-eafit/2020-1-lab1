@@ -58,28 +58,28 @@
     GitHub repository, this is what a sample input-output looks
     like:</p>
     <pre>
-      GHCi&gt; simPDA pda0 []
+      GHCi&gt; simPDA pda1 []
       True
 
-      GHCi&gt; simPDA pda0 [1]
+      GHCi&gt; simPDA pda1 [1]
       False
 
-      GHCi&gt; simPDA pda0 [0,1,1,0]
+      GHCi&gt; simPDA pda1 [0,1,1,0]
       True
 
-      GHCi&gt; simPDA pda0 [0,1,1,1,0,0,1,1,1,0]
+      GHCi&gt; simPDA pda1 [0,1,1,1,0,0,1,1,1,0]
       True
 
-      GHCi&gt; simPDA pda1 "aaaab"
+      GHCi&gt; simPDA pda2 "aaaab"
       False
-
-      GHCi&gt; simPDA pda1 "aabb"
-      True
 
       GHCi&gt; simPDA pda2 "aabb"
+      True
+
+      GHCi&gt; simPDA pda3 "aabb"
       False
 
-      GHCi&gt; simPDA pda2 "aaaaaabbbbbbbbb"
+      GHCi&gt; simPDA pda3 "aaaaaabbbbbbbbb"
       True
     </pre>
 
